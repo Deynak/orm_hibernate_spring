@@ -3,11 +3,12 @@ package com.deynak.hiber.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "hib_cars")
+@Table(name = "hiber_cars")
 public class Car {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "model")

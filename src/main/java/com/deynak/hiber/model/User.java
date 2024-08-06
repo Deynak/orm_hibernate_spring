@@ -3,21 +3,26 @@ package com.deynak.hiber.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "hib_users")
+@Table(name = "hiber_users")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "name")
     private String firstName;
 
-    @Column(name = "lastname")
+    @Column(name = "surname")
     private String lastName;
 
-    @Column(name = "mail")
+    @Column(name = "email")
     private String email;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cars_id")
+    private Car userCars;
 
     public User() {
     }
@@ -58,5 +63,13 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Car getUserCars() {
+        return userCars;
+    }
+
+    public void setUserCars(Car userCars) {
+        this.userCars = userCars;
     }
 }
