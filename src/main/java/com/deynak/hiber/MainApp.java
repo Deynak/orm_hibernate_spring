@@ -16,14 +16,15 @@ public class MainApp {
 
         UserService userService = context.getBean(UserService.class);
 
-        User user1 = new User("User1", "Lastname1", "user1@mail.ru");
-        Car car1 = new Car("Civic", 6);
+        User user1 = new User("User3", "Lastname3", "user3@mail.ru");
+        Car car1 = new Car("mustang", 10);
         user1.setUserCars(car1);
-        userService.add(user1);
 
-        User user2 = new User("User2", "Lastname2", "user2@mail.ru");
-        Car car2 = new Car("M5", 5);
+        User user2 = new User("User4", "Lastname4", "user4@mail.ru");
+        Car car2 = new Car("M8", 6);
         user2.setUserCars(car2);
+
+        userService.add(user1);
         userService.add(user2);
 
         List<User> users = userService.listUsers();
@@ -31,13 +32,13 @@ public class MainApp {
             System.out.println(user);
         }
 
-        // Fetch user by car
-//        try {
-//            User user = userService.getUserByCar("M5", 5);
-//            System.out.println("Found user: " + user);
-//        } catch (NoResultException e) {
-//            System.out.println("No user found with the specified car model and series.");
-//        }
+        try {
+            User foundUser = userService.getUserByCar("M5", 5);
+            System.out.println("Found user: " + foundUser);
+        } catch (javax.persistence.NoResultException e) {
+            System.out.println("No user found with the specified car model and series.");
+        }
+
 
         context.close();
     }
